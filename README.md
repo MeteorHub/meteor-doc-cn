@@ -7,6 +7,8 @@ Meteor中文社区[MeteorHub](http://www.meteorhub.org/)，新社区，建设中
 
 ## 翻译进度
 
+先到 [meteorhub](http://www.meteorhub.org/t/meteor-meteor/40) 认领待翻译的章节，然后按照贡献流程进行。
+
 ## 贡献力量
 
 如果想做出贡献的话，你可以：
