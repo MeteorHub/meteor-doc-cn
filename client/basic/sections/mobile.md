@@ -1,49 +1,45 @@
 {{#template name="basicMobile"}}
 
-## Building Mobile Apps
+## [开发手机应用](#buildingmobileapps)
 
-Once you've built your web app with Meteor, you can easily build a native
-wrapper for your app and publish it to the Google Play Store or iOS App Store
-with just a few commands. We've put a lot of work into making the same packages
-and APIs work on desktop and mobile, so that you don't have to worry about a lot
-of the edge cases associated with mobile app development.
+当你用Meteor开发完成web app之后，只需几个命令，就可以轻松地构建一个native包装，并发布到Google Play Store或是iOS App Store。
+我们用了很大精力，使相同的包和API在桌面端和移动端都能工作，所以你无须担心大量的移动应用开发相关的边界情况。
 
-### Installing mobile SDKs
+### 安装手机 SDKs
 
-Install the development tools for Android or iOS with one command:
+安装Android 或ios 开发工具：
 
 ```bash
 meteor install-sdk android     # for Android
 meteor install-sdk ios         # for iOS
 ```
 
-### Adding platforms
+### 添加平台
 
-Add the relevant platform to your app:
+添加相关平台到你的应用：
 
 ```bash
 meteor add-platform android    # for Android
 meteor add-platform ios        # for iOS
 ```
 
-### Running on a simulator
+### 运行模拟器
 
 ```bash
 meteor run android             # for Android
 meteor run ios                 # for iOS
 ```
 
-### Running on a device
+### 在设备上运行
 
 ```bash
 meteor run android-device      # for Android
 meteor run ios-device          # for iOS
 ```
 
-### Configuring app icons and metadata
+### 配置APP图标和metadata
 
-You can configure your app's icons, title, version number, splash screen, and other metadata with the special [`mobile-config.js` file](#/full/mobileconfigjs).
+可以用特殊的文件[`mobile-config.js`](#/full/mobileconfigjs)配置APP的图标、标题、版本号、启动画面以及其他metadata。
 
-Learn more about Meteor's mobile support on the [GitHub wiki page](https://github.com/meteor/meteor/wiki/Meteor-Cordova-Phonegap-integration).
-
+更多关于Meteor对移动端的支持参见[GitHub wiki page](https://github.com/meteor/meteor/wiki/Meteor-Cordova-Phonegap-integration)。
 {{/template}}
