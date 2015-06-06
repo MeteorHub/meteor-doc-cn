@@ -1,47 +1,39 @@
 {{#template name="basicFileStructure"}}
 
-## File Structure
+## 文件结构
 
-Meteor is very flexible about how you structure the files in your app. It
-automatically loads all of your files, so there is no need to use `<script>` or
-`<link>` tags to include JavaScript or CSS.
+对于该如何组织应用的文件结构，Meteor是非常灵活的。它会自动加载所有文件，所以不需要再用`<script>` 或 `<link>`标签来引入javascript和CSS。
 
-### Default file loading
+### 文件的默认加载
 
-If files are outside of the special directories listed below, Meteor does the following:
+如果某个文件在下面提到的特殊文件夹之外，Meteor会做如下处理：
 
-1. HTML templates are compiled and sent to the client. See [the templates section](#/basic/templates) for more details.
-2. CSS files are sent to the client. In production mode they are automatically concatenated and minified.
-3. JavaScript is loaded on the client and the server. You can use `Meteor.isClient` and `Meteor.isServer` to control where certain blocks of code run.
+1. HTML模板编译完成后发送到客户端。详细信息参见[the templates section](#/basic/templates)。
+2. CSS文件发送到客户端。在生产模式下，会自动合并、压缩。
+3. Javascript被加载到客户端和服务端。可以使用`Meteor.isClient` 和 `Meteor.isServer` 来控制特定代码的运行位置。
 
-If you want more control over which JavaScript code is loaded on the client and
-the server, you can use the special directories listed below.
+如果你想更好的控制哪些javascript代码加载到客户端或是服务端，可以使用下面列出的特殊文件夹。
 
-### Special directories
+### 特殊文件夹
 
 #### `/client`
 
-Any files here are only served to the client. This is a good place to keep your
-HTML, CSS, and UI-related JavaScript code.
+`/client`文件夹中所有文件都只发送到客户端。用来放置HTML，CSS和UI相关的javascript代码。
 
 #### `/server`
 
-Any files in this directory are only used on the server, and are never sent to
-the client. Use `/server` to store source files with sensitive logic or data
-that should not be visible to the client.
+`/server`文件夹中所有文件都只提供给服务端使用，不会发送到客户端。用来放置不应该被客户端看到的敏感逻辑和数据。
 
 #### `/public`
 
-Files in `/public` are served to the client as-is. Use this to store assets such
-as images. For example, if you have an image located at
-`/public/background.png`, you can include it in your HTML with `<img src='/background.png'/>` or in your CSS with `background-image:
-url(/background.png)`. Note that `/public` is not part of the image URL.
+`/public`文件夹中的文件会原样发送到客户端。用来放置资源，例如：图片。假设有张图片`/public/background.png`，
+在HTML中用 `<img src='/background.png'/> `引用或是在CSS中用 `background-image: url(/background.png)` 引用。
+注意图片URL中不包含`/public`。
 
 #### `/private`
 
-These files can only be accessed by server code through [`Assets`](#assets) API and are not accessible to the client.
+`/private`文件夹中的文件只能由服务端代码通过[`Assets`](#assets) API 来获取，客户端无法获取。
 
-Read more about file load order and special directories in the [Structuring Your
-App section](#/full/structuringyourapp) of the full API documentation.
+更多关于文件加载顺序和特殊文件夹的说明参见[Structuring Your App section](#/full/structuringyourapp)
 
 {{/template}}
