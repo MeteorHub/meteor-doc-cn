@@ -1,6 +1,6 @@
 {{#template name="basicFileStructure"}}
 
-## 文件结构
+## [文件结构](#filestructure)
 
 对于该如何组织应用的文件结构，Meteor是非常灵活的。它会自动加载所有文件，所以不需要再用`<script>` 或 `<link>`标签来引入javascript和CSS。
 

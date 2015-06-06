@@ -1,6 +1,6 @@
 {{#template name="basicMobile"}}
 
-## 开发手机 Apps
+## [开发手机应用](#buildingmobileapps)
 
 当你用Meteor开发完成web app之后，只需几个命令，就可以轻松地构建一个native包装，并发布到Google Play Store或是iOS App Store。
 我们用了很大精力，使相同的包和API在桌面端和移动端都能工作，所以你无须担心大量的移动应用开发相关的边界情况。

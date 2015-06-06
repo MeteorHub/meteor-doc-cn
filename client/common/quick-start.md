@@ -1,5 +1,5 @@
 {{#template name="quickStart"}}
-## 快速开始!
+## [快速开始!](#quickstart)
 
 Meteor 支持 [OS X, Windows, and Linux](https://github.com/meteor/meteor/wiki/Supported-Platforms).
 
