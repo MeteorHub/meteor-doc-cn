@@ -3,12 +3,62 @@ Meteor中文文档
 
 Meteor中文社区[MeteorHub](http://www.meteorhub.org/)，新社区，建设中。感兴趣的童鞋可以一起参与进来。
 
-**如果想贡献翻译或者校对，请加QQ群：327885034，感谢**
+QQ群：327885034
+
+**如果想贡献翻译,先到 [MeteorHub](http://www.meteorhub.org/t/meteor-meteor/40) 认领待翻译的章节，然后按照贡献流程进行。**
 
 ## 翻译进度
 
-先到 [meteorhub](http://www.meteorhub.org/t/meteor-meteor/40) 认领待翻译的章节，然后按照贡献流程进行。
+- basic
+    - 快速开始 (完成) by [zicai]
+    - Meteor理念 (完成) by [zicai]
+    - 学习资源 (完成) by [zicai]
+    - 命令行工具 (完成) by [zicai]
+    - 文件结构 (完成) by [zicai]
+    - 开发手机应用 (完成) by [zicai]
+    - 模板 (进行中) by [zicai]
+    - Session
+    - Tracker
+    - 集合
+    - 账户
+    - Methods
+    - 发布/订阅
+    - Environment
+- full api
+	- Concepts 
+		- what is Meteor
+		- structring your app
+		- Data and security
+		- Reactivity
+		- Live HTMl templates
+		- Using packages
+		- Namespacing
+		- Deploying
+		- Writing packages
+	- API
+		- Core
+		- Publish and subscribe
+		- Methods
+		- Check
+		- Server connections
+		- Collections
+		- Session
+		- Accounts
+		- Passwords
+		- Templates
+		- Blaze
+		- Timers
+		- Tracker
+		- ReactiveVar
+		- EJSON
+		- HTTP
+		- Email
+		- package.js
+		- mobile-config.js
+	- Packages
+	- Command line 
 
+		
 ## 贡献力量
 
 如果想做出贡献的话，你可以：
@@ -45,3 +95,6 @@ Meteor中文社区[MeteorHub](http://www.meteorhub.org/)，新社区，建设中
 如果修改过程中meteor-doc-cn有了更新，请重复6、7、8步。
 
 修改之后，首先push到你的库，然后登录GitHub，在你的库的首页可以看到一个 `pull request` 按钮，点击它，填写一些说明信息，然后提交即可。
+
+
+[zicai]:https://github.com/zicai
