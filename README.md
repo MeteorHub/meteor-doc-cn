@@ -20,9 +20,9 @@ QQ群：327885034
     - Session
     - Tracker
     - 集合
-    - 账户
+    - 账户 (进行中) by [fooying]
     - Methods
-    - 发布/订阅
+    - 发布/订阅 (完成) by [fooying]
     - Environment
 - full api
 	- Concepts 
@@ -98,3 +98,4 @@ QQ群：327885034
 
 
 [zicai]:https://github.com/zicai
+[fooying]:https://github.com/fooying
