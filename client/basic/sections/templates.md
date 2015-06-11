@@ -1,22 +1,15 @@
 {{#template name="basicTemplates"}}
 
-<h2 id="templates"><span>Templates</span></h2>
+<h2 id="templates"><span>模板</span></h2>
 
-In Meteor, views are defined in _templates_. A template is a snippet of HTML
-that can include dynamic data. You can also interact with your templates from
-JavaScript code to insert data and listen to events.
+在Meteor中，视图定义在 _模板_ 。模板就是包含动态数据的HTML代码段。你可以通过javascript给模板插入数据，或是监听模板事件。
 
-<h3 class="api-title" id="defining-templates">Defining Templates in HTML</h3>
+<h3 class="api-title" id="defining-templates">用HTML定义模板</h3>
 
-Templates are defined in `.html` files that can be located anywhere in your
-Meteor project folder except the `server`, `public`, and `private` directories.
+模板定义在`.html`文件中，可以放在项目任何位置，除了`server`,`public`,`private`文件夹
 
-Each `.html` file can contain any number of the following top-level elements:
-`<head>`, `<body>`, or `<template>`. Code in the `<head>` and `<body>` tags is
-appended to that section of the HTML page, and code inside `<template>` tags can
-be included using `{{dstache}}> templateName}}`, as shown in the example below.
-Templates can be included more than once &mdash; one of the main purposes of
-templates is to avoid writing the same HTML multiple times by hand.
+每个`.html`文件可以包含任意数量的顶级元素：`<head>`,`<body>`或是`<template>`。`<head>`,`<body>`标签里的代码会附加到HTML页面中对应的标签，
+`<tempalte>`标签里的代码可以用`{{dstache}}> templateName}}`引入，如下面的例子所示。模板可以引入多次&mdash;模板的主要目的之一就是避免重复手写相同的HTML。
 
 ```
 <!-- add code to the <head> of the page -->
@@ -36,16 +29,12 @@ templates is to avoid writing the same HTML multiple times by hand.
 </template>
 ```
 
-The `{{dstache}} ... }}` syntax is part of a language called Spacebars that
-Meteor uses to add functionality to HTML. As shown above, it lets you include
-templates in other parts of your page. Using Spacebars, you can also display
-data obtained from _helpers_. Helpers are written in JavaScript, and can be
-either simple values or functions.
+`{{dstache}} ... }}`是Spacebars语法，Meteor使用Spacebars给HTML增加功能。如上所示，利用它你可以引入模板。
+使用Spacebars，你可以显示从 _helpers_ 中获取的数据。Helpers 用javascript来写，既可以是简单值，也可以是函数。
 
 {{> autoApiBox "Template#helpers"}}
 
-Here's how you might define a helper called `name` for a template called
-`nametag` (in JavaScript):
+给`nametag`模板定义一个叫做`name`的helper(在javascript里)：
 
 ```
 Template.nametag.helpers({
@@ -53,7 +42,7 @@ Template.nametag.helpers({
 });
 ```
 
-And here is the `nametag` template itself (in HTML):
+`nametag` 模板本身 (在HTML里):
 
 ```
 <!-- In an HTML file, display the value of the helper -->
@@ -62,24 +51,15 @@ And here is the `nametag` template itself (in HTML):
 </template>
 ```
 
-Spacebars also has a few other handy control structures that can be used
-to make your views more dynamic:
+Spacebars还有几个方便使用的控制结构，可以使视图更加动态：
 
-- `{{dstache}}#each data}} ... {{dstache}}/each}}` - Iterate over the items in
-`data` and display the HTML inside the block for each one.
-- `{{dstache}}#if data}} ... {{dstache}}else}} ... {{dstache}}/if}}` - If `data`
-is `true`, display the first block; if it is false, display the second one.
-- `{{dstache}}#with data}} ... {{dstache}}/with}}` - Set the data context of
-the HTML inside, and display it.
+- `{{dstache}}#each data}} ... {{dstache}}/each}}` - 循环`data`里的每一项，每一项都会显示一次`#each`块里的HTML。
+- `{{dstache}}#if data}} ... {{dstache}}else}} ... {{dstache}}/if}}` - 如果`data`为`true`，显示第一个块，反之，显示第二个块。
+- `{{dstache}}#with data}} ... {{dstache}}/with}}` - 设置内部HTML的数据上下文，然后显示。
 
-Each nested `#each` or `#with` block has its own _data context_, which is
-an object whose properties can be used as helpers inside the block. For
-`#with` blocks, the data context is simply the value that appears after
-the `#with` and before the `}}` characters. For `#each` blocks, each
-element of the given array becomes the data context while the block is
-evaluated for that element.
+每一个嵌套的`#each`或`#with`块都有自己的 _数据上下文_ ,数据上下文是一个对象，它的属性在块内部可以用作helper。例如：`#with`块，它的数据上下文就是跟在它后面，`}}`之前的变量值。`#each`块，循环到的元素会作为当前数据上下文。
 
-For instance, if the `people` helper has the following value
+例如，`people` helper 的值为：
 
 ```
 Template.welcomePage.helpers({
@@ -87,7 +67,7 @@ Template.welcomePage.helpers({
 });
 ```
 
-then you can display every person's name as a list of `<p>` tags:
+然后你可以用一个`<p>`标签列表显示每一个人的姓名：
 
 ```html
 {{dstache}}#each people}}
@@ -95,7 +75,7 @@ then you can display every person's name as a list of `<p>` tags:
 {{dstache}}/each}}
 ```
 
-or use the "nametag" template from above instead of `<p>` tags:
+或是用上面的"nametag"模板代替 `<p>`标签：
 
 ```html
 {{dstache}}#each people}}
@@ -103,9 +83,8 @@ or use the "nametag" template from above instead of `<p>` tags:
 {{dstache}}/each}}
 ```
 
-Remember that helpers can be functions as well as simple values. For
-example, to show the logged in user's username, you might define a
-function-valued helper called `username`:
+记住：helper可以是简答值，也可以是函数。例如，要显示登录用户的用户名，你可以定义一个叫做`username`的helper：
+
 
 ```
 // in your JS file
@@ -116,8 +95,7 @@ Template.profilePage.helpers({
 });
 ```
 
-Now, each time you use the `username` helper, the helper function above
-will be called to determine the user's name:
+现在，每次使用`username` helper的时候，都会调用上面的helper函数来确定用户名：
 
 ```
 <!-- in your HTML -->
@@ -126,8 +104,7 @@ will be called to determine the user's name:
 </template>
 ```
 
-Helpers can also take arguments. For example, here's a helper that pluralizes
-a word:
+Helper可以接收参数。例如，
 
 ```js
 Template.post.helpers({
@@ -141,32 +118,22 @@ Template.post.helpers({
 });
 ```
 
-Pass in arguments by putting them inside the curly braces after the name of the
-helper:
+参数放在大括号里，helper名之后：
 
 ```html
 <p>There are {{dstache}}commentCount 3}}.</p>
 ```
 
-The helpers above have all been associated with specific templates, but
-you can also make a helper available in all templates by using
-[`Template.registerHelper`](#template_registerhelper).
+上面定义的helper都关联到特定的模板，可以用[`Template.registerHelper`](#template_registerhelper)定义所有模板都能用的helper。
 
-You can find detailed documentation for Spacebars in the
-[README on GitHub](https://github.com/meteor/meteor/blob/devel/packages/spacebars/README.md).
-Later in this documentation, the sections about `Session`, `Tracker`,
-`Collections`, and `Accounts` will talk more about how to add dynamic data
-to your templates.
+关于Spacebars更详细的文档参见[README on GitHub](https://github.com/meteor/meteor/blob/devel/packages/spacebars/README.md)。后面的`Session`, `Tracker`,`Collections`, 和 `Accounts`小节会有如何给模板添加动态数据的讨论。
 
 
 {{> autoApiBox "Template#events"}}
 
-The event map passed into `Template.myTemplate.events` has event descriptors as
-its keys and event handler functions as the values. Event handlers get two
-arguments: the event object and the template instance. Event handlers can also
-access the data context of the target element in `this`.
+传给`Template.myTemplate.events`的事件map,用事件描述符作为key,事件处理函数作为value。事件处理函数接收两个参数：事件对象和模板实例。事件处理函数中通过`this`获取数据上下文。
 
-To attach event handlers to the following template
+假设有下面的模板：
 
 ```
 <template name="example">
@@ -180,7 +147,7 @@ To attach event handlers to the following template
 </template>
 ```
 
-you might call `Template.example.events` as follows:
+调用 `Template.example.events` 给模板增加事件处理器：
 
 ```
 Template.example.events({
@@ -195,19 +162,11 @@ Template.example.events({
 });
 ```
 
-The first part of the key (before the first space) is the name of the
-event being captured. Pretty much any DOM event is supported. Some common
-ones are: `click`, `mousedown`, `mouseup`, `mouseenter`, `mouseleave`,
-`keydown`, `keyup`, `keypress`, `focus`, `blur`, and `change`.
+key的前半部分是要捕获的事件名称。几乎支持所有的DOM事件，常见的有：`click`, `mousedown`, `mouseup`, `mouseenter`, `mouseleave`, `keydown`, `keyup`, `keypress`, `focus`, `blur`, 和 `change`。
 
-The second part of the key (after the first space) is a CSS selector that
-indicates which elements to listen to. This can be almost any selector
-[supported by JQuery](http://api.jquery.com/category/selectors/).
+key的后半部分是CSS选择器，用来指明要监听的元素。几乎支持所有[JQuery支持的选择器](http://api.jquery.com/category/selectors/).
 
-Whenever the indicated event happens on the selected element, the
-corresponding event handler function will be called with the relevant DOM
-event object and template instance. See the [Event Maps section](#eventmaps)
-for details.
+无论何时，选定元素上触发了监听的事件时，对应的事件处理函数就会被调用，参数为：DOM 事件对象和模板实例。详细信息参见[Event Maps section](#eventmaps)
 <!-- TODO Update the link to full docs for Event Maps -->
 
 {{> autoApiBox "Template#onRendered"}}
