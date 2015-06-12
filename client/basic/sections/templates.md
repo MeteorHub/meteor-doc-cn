@@ -171,19 +171,12 @@ key的后半部分是CSS选择器，用来指明要监听的元素。几乎支�
 
 {{> autoApiBox "Template#onRendered"}}
 
-The functions added with this method are called once for every instance of
-*Template.myTemplate* when it is inserted into the page for the first time.
+用这个方法注册的函数会在*Template.myTemplate*模板的每个实例第一次插入到页面的时候调用一次。
 
-These callbacks can be used to integrate external libraries that
-aren't familiar with Meteor's automatic view rendering, and need to be
-initialized every time HTML is inserted into the page.
-You can perform initialization or clean-up on any objects in
-[`onCreated`](#template_oncreated) and [`onDestroyed`](#template_ondestroyed)
-callbacks.
+这个回调函数可以用来集成那些不适应Meteor自动视图渲染机制,并且需要在每次HTML插入到页面时进行初始化的第三方库。
+你可以在[`onCreated`](#template_oncreated) 和 [`onDestroyed`](#template_ondestroyed)回调中执行对象初始化或是清理工作。
 
-For example, to use the HighlightJS library to apply code highlighting to
-all `<pre>` elements inside the `codeSample` template, you might pass
-the following function to `Template.codeSample.onRendered`:
+例如，要使用HighlightJS库高亮`codeSample`模板中所有`<pre>`元素，你可以传递如下回调函数给 `Template.codeSample.onRendered`：
 
 ```
 Template.codeSample.onRendered(function () {
@@ -191,44 +184,31 @@ Template.codeSample.onRendered(function () {
 });
 ```
 
-In the callback function, `this` is bound to a [template
-instance](#template_inst) object that is unique to this inclusion of the
-template and remains across re-renderings. You can use methods like
-[`this.find`](#template_find) and
-[`this.findAll`](#template_findAll) to access DOM nodes in the template's
-rendered HTML.
+在回调函数中，`this`指向一个[template
+instance](#template_inst)对象实例，that is unique to this inclusion of the
+template and remains across re-renderings.可以使用方法[`this.find`](#template_find) 和
+[`this.findAll`](#template_findAll)来获取模板渲染后的HTML DOM节点。
 
 <h2 id="template_inst"><span>Template instances</span></h2>
 
-A template instance object represents a single inclusion of a template in the
-document.  It can be used to access the HTML elements inside the template and it
-can be assigned properties that persist as the template is reactively updated.
+一个模板实例对象代表文档对模板的一次引入。模板实例可以用来获取模板中的HTML元素，还可以给模板实例附加属性，属性会在模板响应式更新中保持，不会丢失。
 
-Template instance objects can be found in several places:
+在好几个地方都可以获取到模板实例对象：
 
-1. The value of `this` in the `created`, `rendered`,
-   and `destroyed` template callbacks
-2. The second argument to event handlers
-3. As [`Template.instance()`](#template_instance) inside helpers
+1. 在`created`, `rendered`和 `destroyed`模板回调中，this指向模板实例 
+2. 事件处理器的第二个参数
+3. 在Helper中，通过[`Template.instance()`](#template_instance)获取模板实例
 
-You can assign additional properties of your choice to the template instance to
-keep track of any state relevant to the template. For example, when using the
-Google Maps API you could attach the `map` object to the current template
-instance to be able to refer to it in helpers and event handlers. Use the
-[`onCreated`](#template_onCreated) and [`onDestroyed`](#template_onDestroyed)
-callbacks to perform initialization or clean-up.
+你可以选择给模板实例附加属性，来跟踪模板相关的状态。例如，当使用Google Maps API 时，你可以附加`map`对象到当前模板实例，这样就可以在Helper和事件处理器中引用`map`对象。用[`onCreated`](#template_onCreated) 和 [`onDestroyed`](#template_onDestroyed)回调函数来执行初始化或清理工作。
 
 {{> autoApiBox "Blaze.TemplateInstance#findAll"}}
 
-`template.findAll` returns an array of DOM elements matching `selector`. You can
-also use `template.$`, which works exactly like the JQuery `$` function but only
-returns elements within `template`.
+`template.findAll`返回一个符合`selector`的DOM元素数组。也可以使用`template.$`，它的工作方式和JQuery的`$`函数一样，但是只返回`template`内部的元素。
 
 {{> autoApiBox "Blaze.TemplateInstance#find"}}
 
 <!-- XXX Why is this not findOne? -->
 
-`find` is just like `findAll` but only returns the first element found. Like
-`findAll`, `find` only returns elements from inside the template.
+`find`类似`findAll`但是只返回找到的第一个元素。和`findAll`一样，`find`只返回模板内部的元素。
 
 {{/template}}
