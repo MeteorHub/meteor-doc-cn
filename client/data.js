@@ -5349,7 +5349,7 @@ DocsData = {
       }
     ],
     "scope": "static",
-    "summary": "Get the value of a session variable. If inside a [reactive\ncomputation](#reactivity), invalidate the computation the next time the\nvalue of the variable is changed by [`Session.set`](#session_set). This\nreturns a clone of the session value, so if it's an object or an array,\nmutating the returned value has no effect on the value stored in the\nsession."
+    "summary": "获取session里键key的值。如果是在一个_[响应式计算(reactive computation)](#reactivity)_内部。当通过[`Session.set`](#session_set)修改键key的值时，会作废对应的计算。这个方法会返回键key值的克隆副本，所以如果键key的值是一个对象或数组，修改返回值并不会改变session里键key的值。"
   },
   "Session.set": {
     "filepath": "session/session.js",
@@ -5382,7 +5382,7 @@ DocsData = {
       }
     ],
     "scope": "static",
-    "summary": "Set a variable in the session. Notify any listeners that the value\nhas changed (eg: redraw templates, and rerun any\n[`Tracker.autorun`](#tracker_autorun) computations, that called\n[`Session.get`](#session_get) on this `key`.)"
+    "summary": "将session里键key的值设为value。并通知所有监听器：键key的值发生了变化（例如：通知那些调用[`Session.get`](#session_get)获取键`key`值的模板helper或是autorun，重新渲染模板或是重新执行[`Tracker.autorun`](#tracker_autorun)）。"
   },
   "Session.setDefault": {
     "filepath": "session/session.js",
