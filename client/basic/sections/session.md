@@ -2,22 +2,17 @@
 
 <h2 id="session"><span>Session</span></h2>
 
-`Session` provides a global object on the client that you can use to
-store an arbitrary set of key-value pairs. Use it to store things like
-the currently selected item in a list.
+在客户端，`Session`提供了一个全局对象，可以用它来保存任意的键值对。例如：保存列表中当前选中项。
 
-What's special about `Session` is that it's _reactive_. If you call
-`Session.get("myKey")` in a [template helper](#template_helpers) or inside
-[`Tracker.autorun`](#tracker_autorun), the relevant part of the template will
-be re-rendered automatically whenever `Session.set("myKey", newValue)` is
-called.
+`Session`的特殊之处在于，它是_响应式_的。如果在[template helper](#template_helpers)或[`Tracker.autorun`](#tracker_autorun)里调用了
+`Session.get("myKey")`，那么无论何时调用`Session.set("myKey", newValue)` 都会触发相应的模板片段自动重新渲染。
 
 {{> autoApiBox "Session.set"}}
 <!-- XXX The Session.set API box is a little wonky -->
 
 {{> autoApiBox "Session.get"}}
 
-Example:
+例如：
 
 ```
 <!-- In your template -->
@@ -41,9 +36,7 @@ Session.set("enemy", "Eurasia");
 // Page will change to say "We've always been at war with Eurasia"
 ```
 
-Using `Session` gives us our first taste of _reactivity_, the idea that the view
-should update automatically when necessary, without us having to call a `render`
-function manually. In the next section, we will learn how to use Tracker, the
-lightweight library that makes this possible in Meteor.
+`Seesion`带我们初次体会到了_响应式_的魅力，视图会在必要时自动更新，无需手动调用`render`函数。
+在下一节，将会学习如何使用Tracker，一个非常轻量的库，使响应式成为可能。
 
 {{/template}}
