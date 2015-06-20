@@ -16,14 +16,14 @@ QQ群：327885034
     - 命令行工具 (完成) by [zicai]
     - 文件结构 (完成) by [zicai]
     - 开发手机应用 (完成) by [zicai]
-    - 模板 (进行中) by [zicai]
-    - Session
-    - Tracker
-    - 集合
+    - 模板 (完成) by [zicai]
+    - Session (完成) by [zicai]
+    - Tracker (完成) by [zicai]
+    - 集合 (进行中) by [zicai]
     - 账户 (进行中) by [fooying]
-    - Methods
+    - Methods (完成) by [zicai]
     - 发布/订阅 (完成) by [fooying]
-    - Environment
+    - Environment (完成) by [zicai]
 - full api
 	- Concepts 
 		- what is Meteor
