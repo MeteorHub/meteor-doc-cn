@@ -2,25 +2,16 @@
 
 <h2 id="tracker"><span>Tracker</span></h2>
 
-Meteor has a simple dependency tracking system which allows it to
-automatically rerun templates and other functions whenever
-[`Session`](#session) variables, database queries, and other data
-sources change.
+Meteor 包含一个简单地依赖跟踪系统，使用它可以在[`Session`](#session)变量、数据库查询或其它数据源发生变化时自动重新渲染模板或是重新运行某些函数。
 
-Unlike most other systems, you don't have to manually declare these dependencies
-&mdash; it "just works." The mechanism is simple and efficient. Once you've
-initialized a computation with `Tracker.autorun`, whenever you call a Meteor function that returns data, `Tracker` automatically records which data were
-accessed. Later, when this data changes, the computation is rerun automatically.
-This is how a template knows how to re-render whenever its [helper
-functions](#template_helpers) have new data to return.
+和其它的依赖跟踪系统不同，不需要手工声明依赖&mdash; 它就能工作。它的机制简单而高效。一旦你用`Tracker.autorun`初始化了一个计算(computation), `Tracker` 自动记录使用到的数据。当这些数据发生变化时，计算就会自动重新运行。这就是为什么当[helper
+functions](#template_helpers)返回新数据时模板知道如何重新渲染。
 
 {{> autoApiBox "Tracker.autorun" }}
 
-`Tracker.autorun` allows you to run a function that depends on reactive
-data sources. Whenever those data sources are updated with new data, the
-function will be rerun.
+`Tracker.autorun`使你可以声明一个依赖响应式数据源的函数，无论何时数据源发生变化，函数都会被重新执行。
 
-For example, you can monitor one `Session` variable and set another:
+例如，可以监测一个`Session`变量，设置另外一个：
 
 ```
 Tracker.autorun(function () {
@@ -29,10 +20,7 @@ Tracker.autorun(function () {
 });
 ```
 
-Or you can wait for a session variable to have a certain value, and do
-something the first time it does. If you want to prevent further rerunning
-of the function, you can call `stop` on the computation object that is
-passed as the first parameter to the callback function:
+或者可以等待session变量成为一个特定值，执行一些特定操作。如果想阻止回调函数进一步重新运行，可以调用计算(computation)对象的`stop`，计算对象会作为回调函数的第一个参数传入：
 
 ```
 // Initialize a session variable called "counter" to 0
@@ -56,19 +44,10 @@ Session.set("counter", Session.get("counter") + 1);
 Session.set("counter", Session.get("counter") + 1);
 ```
 
-The first time `Tracker.autorun` is called, the callback function is
-invoked immediately, at which point it alerts and stops right away if
-`counter === 2` already. In this example, `Session.get("counter") === 0`
-when `Tracker.autorun` is called, so nothing happens the first time, and
-the function is run again each time `counter` changes, until
-`computation.stop()` is called after `counter` reaches `2`.
+`Tracker.autorun`第一次被调用的时候，回调函数立即被执行，如果此时`counter === 2`，那么就会alert，然后立即停止。在上面的例子中，当`Tracker.autorun`被调用时，`Session.get("counter") === 0`，所以第一次什么都不会发生，每次`counter`发生变化时，回调函数都会重新运行，直到当`counter` 等于`2`的时候，`computation.stop()`被调用。
 
-If the initial run of an autorun throws an exception, the computation
-is automatically stopped and won't be rerun.
+如果autorun在第一次执行时抛出了异常，那么计算(computation)会自动停止，以后也不会重新运行。
 
-To learn more about how `Tracker` works and to explore advanced ways to
-use it, visit the <a href="http://manual.meteor.com/#tracker">Tracker</a>
-chapter in the <a href="http://manual.meteor.com/">Meteor Manual</a>,
-which describes it in much more detail.
+关于`Tracker`的工作原理和高级用法，参见<a href="http://manual.meteor.com/">Meteor 手册</a>里的<a href="http://manual.meteor.com/#tracker">Tracker</a>一节，里面有更加详细的说明。
 
 {{/template}}
