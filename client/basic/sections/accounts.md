@@ -2,29 +2,21 @@
 
 <h2 id="accounts"><span>Accounts</span></h2>
 
-To get accounts functionality, add one or more of the following packages to
-your app with `meteor add`:
+要增加账户功能，用`meteor add`添加下面的一个或多个包：
 
-- `accounts-ui`: This package allows you to use
-  `{{dstache}}> loginButtons}}` in your templates to add an automatically
-  generated UI that will let users log into your app. There are several
-  community alternatives to this package that change the appearance, or you
-  can not use it and use the [advanced Accounts methods](#accounts) instead.
-- `accounts-password`: This package will allow users to log in with passwords.
-  When you add it the `loginButtons` dropdown will automatically gain email
-  and password fields.
+- `accounts-ui`:这个包允许你通过在模板中使用`{{dstache}}> loginButtons}}`，来添加自动生成的登录UI，
+  用户可以登录。社区中有其它的替代选择，或者你也可以结合使用[advanced Accounts methods](#accounts)
+- `accounts-password`: 这个包允许用户通过密码登录。添加之后，`loginButtons`下拉框会自动增加邮箱和密码文本域。
 - `accounts-facebook`, `accounts-google`, `accounts-github`, `accounts-twitter`,
-  and community packages for other services will allow your users to log
-  in with their accounts from other websites. These will automatically add
-  buttons to the `loginButtons` dropdown.
+  以及其它由社区贡献的第三方登录包，让你的用户可以通过第三方网站登录。
+  它们会自动添加登录按钮到`loginButtons`下拉框中。
 
 <h3 id="loginButtons" class="api-title">
   <a class="name selflink" href="#b-loginButtons">{{dstache}}> loginButtons}}</a>
   <span class="locus">Client</span>
 </h3>
 
-Include the `loginButtons` template somewhere in your HTML to use Meteor's
-default UI for logging in. To use this, you need to add the `accounts-ui` package:
+在HTML中引入`loginButtions`模板，就可以使用Meteor默认的登录UI。使用前，需要先添加`accounts-ui`包：
 
 ```
 $ meteor add accounts-ui
@@ -32,15 +24,13 @@ $ meteor add accounts-ui
 
 {{> autoApiBox "Meteor.user"}}
 
-Get the logged in user from the [`Meteor.users`](#meteor_users) collection.
-Equivalent to `Meteor.users.findOne(Meteor.userId())`.
+从 [`Meteor.users`](#meteor_users) 集合中获取当前登录用户。等同于`Meteor.users.findOne(Meteor.userId())`。
 
 {{> autoApiBox "Meteor.userId"}}
 
 {{> autoApiBox "Meteor.users"}}
 
-This collection contains one document per registered user. Here's an example
-user document:
+这个集合包含了所有注册用户，每个用户是一个文档。例如：
 
 ```
 {
@@ -71,30 +61,22 @@ user document:
 }
 ```
 
-A user document can contain any data you want to store about a user. Meteor
-treats the following fields specially:
+一个用户文档可以包含任何你想保存的用户相关的数据。不过，Meteor会特殊对待下面的几个字段：
 
-- `username`: a unique String identifying the user.
-- `emails`: an Array of Objects with keys `address` and `verified`;
-  an email address may belong to at most one user. `verified` is
-  a Boolean which is true if the user has [verified the
-  address](#accounts_verifyemail) with a token sent over email.
-- `createdAt`: the Date at which the user document was created.
-- `profile`: an Object which (by default) the user can create
-  and update with any data.
-- `services`: an Object containing data used by particular
-  login services. For example, its `reset` field contains
-  tokens used by [forgot password](#accounts_forgotpassword) links,
-  and its `resume` field contains tokens used to keep you
-  logged in between sessions.
+- `username`: 一个唯一的字符串，可以标识用户。
+- `emails`: 一个对象的数组。对象包含属性
+  `address` 和 `verified` 。一个邮箱地址只能属于一个用户。`verified`是一个布尔值，如果用户已经[验证
+  邮箱地址](#accounts_verifyemail)则为true。
+- `createdAt`: 用户文档创建时间。
+- `profile`: 一个对象，默认情况下用户可以用任何数据新建和更新该字段。
+- `services`: 包含第三方登录服务使用的数据的对象。例如，它的`reset`字段包含的token，用于
+  [忘记密码](#accounts_forgotpassword)的超链接，它的`resume`字段包含的token，用于维持用户登录状态。
 
-Like all [Mongo.Collection](#collections)s, you can access all
-documents on the server, but only those specifically published by the server are
-available on the client.
+和所有的[Mongo.Collection](#collections)一样，在服务端，你可以获取用户集合
+的所有文档，但是在客户端只能获取那些服务端发布的文档。
 
-By default, the current user's `username`, `emails` and `profile` are
-published to the client. You can publish additional fields for the
-current user with:
+默认情况下，当前用户的`username`,`emails`,和`profile`会发布到客户端。
+可以使用下面的代码发布当前用户的其它字段：
 
     // server
     Meteor.publish("userData", function () {
@@ -109,20 +91,15 @@ current user with:
     // client
     Meteor.subscribe("userData");
 
-If the autopublish package is installed, information about all users
-on the system is published to all clients. This includes `username`,
-`profile`, and any fields in `services` that are meant to be public
-(eg `services.facebook.id`,
-`services.twitter.screenName`). Additionally, when using autopublish
-more information is published for the currently logged in user,
-including access tokens. This allows making API calls directly from
-the client for services that allow this.
+如果安装了autopublish包，那么所有用户的信息都会发布到所有客户端。包括`username`,
+`profile` ,以及`service`中所有可以公开的字段(例如：`services.facebook.id`,
+`services.twitter.screenName`)。另外，使用autopublish时，对于当前登录用户会发布更多的信息，
+包括access token。这样就可以直接从客户端发起API调用。
 
-Users are by default allowed to specify their own `profile` field with
-[`Accounts.createUser`](#accounts_createuser) and modify it with
-`Meteor.users.update`. To allow users to edit additional fields, use
-[`Meteor.users.allow`](#allow). To forbid users from making any modifications to
-their user document:
+
+默认情况下，用户可以通过[`Accounts.createUser`](#accounts_createuser)声明自己的`profile`字段，
+也可以通过`Meteor.users.update`来修改它。要允许用户修改更多的字段，使用[`Meteor.users.allow`](#allow)
+，要禁止用户对自己的文档做任何修改，使用：
 
     Meteor.users.deny({update: function () { return true; }});
 
