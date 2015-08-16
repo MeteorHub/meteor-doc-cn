@@ -1,6 +1,8 @@
 # meteor-doc-cn
 Meteor中文文档
 
+文档在线地址：[http://docs.meteorhub.org/](http://docs.meteorhub.org/)
+
 Meteor中文社区[MeteorHub](http://www.meteorhub.org/)，新社区，建设中。感兴趣的童鞋可以一起参与进来。
 
 QQ群：327885034
