@@ -12,7 +12,7 @@ $ curl https://install.meteor.com/ | sh
 ```
 
 Windows 安装包支持 Windows 7, Windows 8.1, Windows Server
-2008, 和 Windows Server 2012。  通过命令行安装，支持 Mac OS X
+2008, 和 Windows Server 2012。命令行安装，支持 Mac OS X
 10.7 (Lion) 及其以上版本,  Linux x86 和 x86_64 架构.
 
 安装完成之后，创建一个项目：
