@@ -38,7 +38,7 @@ QQ群：327885034
 		- Deploying
 		- Writing packages
 	- API
-		- Core by [Huibean]
+		- Core (进行中) by [Huibean]
 		- Publish and subscribe
 		- Methods
 		- Check
