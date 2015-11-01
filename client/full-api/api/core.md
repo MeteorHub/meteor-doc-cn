@@ -1,31 +1,25 @@
 {{#template name="apiCore"}}
 
-<h2 id="core"><span>Meteor Core</span></h2>
+<h2 id="core"><span>Meteor 核心</span></h2>
 
 {{> autoApiBox "Meteor.isClient"}}
 {{> autoApiBox "Meteor.isServer"}}
 
 {{#note}}
-`Meteor.isServer` can be used to limit where code runs, but it does not
-prevent code from being sent to the client. Any sensitive code that you
-don't want served to the client, such as code containing passwords or
-authentication mechanisms, should be kept in the `server` directory.
+`Meteor.isServer` 可以用来限制代码运行的位置，但是不能限制在运行在客户端的代码。
+任何你不希望提供给客户端的敏感代码，例如：包括密码、认证机制的代码，都应该保存在 `server` 目录中。
 {{/note}}
 
 {{> autoApiBox "Meteor.isCordova"}}
 
 {{> autoApiBox "Meteor.startup"}}
 
-On a server, the function will run as soon as the server process is
-finished starting. On a client, the function will run as soon as the DOM
-is ready.
+在服务器上，函数将会运行当服务进程刚刚完成。
+在客户端上，函数将会在 DOM 准备好之后运行。
 
-The `startup` callbacks are called in the same order as the calls to
-`Meteor.startup` were made.
+当 `Meteor.startup` 被建立时，`startup` 回调将会以相同的顺序被调用。
 
-On a client, `startup` callbacks from packages will be called
-first, followed by `<body>` templates from your `.html` files,
-followed by your application code.
+在客户端上，包内的 `startup` 回调会被首先调用，随着你的 `.html` 文件中的 `<body>` 模版和应用代码。
 
     // On server startup, if the database is empty, create some initial data.
     if (Meteor.isServer) {
