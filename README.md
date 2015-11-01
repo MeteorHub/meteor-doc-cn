@@ -38,7 +38,7 @@ QQ群：327885034
 		- Deploying
 		- Writing packages
 	- API
-		- Core
+		- Core by [Huibean]
 		- Publish and subscribe
 		- Methods
 		- Check
@@ -101,3 +101,4 @@ QQ群：327885034
 
 [zicai]:https://github.com/zicai
 [fooying]:https://github.com/fooying
+[Huibean]:https://github.com/Huibean
