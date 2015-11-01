@@ -19,7 +19,7 @@
 
 当 `Meteor.startup` 被建立时，`startup` 回调将会以相同的顺序被调用。
 
-在客户端上，包内的 `startup`回调会被首先调用，随着你的 `.html` 文件中的 `<body>` 模版和应用代码。
+在客户端上，包内的 `startup` 回调会被首先调用，随着你的 `.html` 文件中的 `<body>` 模版和应用代码。
 
     // On server startup, if the database is empty, create some initial data.
     if (Meteor.isServer) {
