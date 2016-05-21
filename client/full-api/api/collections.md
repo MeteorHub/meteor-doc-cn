@@ -366,27 +366,13 @@ Server example:
 
 {{> autoApiBox "Mongo.Collection#allow"}}
 
-When a client calls `insert`, `update`, or `remove` on a collection, the
-collection's `allow` and [`deny`](#deny) callbacks are called
-on the server to determine if the write should be allowed. If at least
-one `allow` callback allows the write, and no `deny` callbacks deny the
-write, then the write is allowed to proceed.
+当客户端在一个 collection 上调用 `insert`，`update`，`remove` 时，collection 的 `allow` 和 `deny` 回调会在服务端被调用，从而决定是否允许修改。如果至少有一个 `allow` 回调允许，并且没有任何 `deny` 回调拒绝，那么就允许操作。
 
-These checks are run only when a client tries to write to the database
-directly, for example by calling `update` from inside an event
-handler. Server code is trusted and isn't subject to `allow` and `deny`
-restrictions. That includes methods that are called with `Meteor.call`
-&mdash; they are expected to do their own access checking rather than
-relying on `allow` and `deny`.
+这些检查只对客户端直接修改数据库起作用，例如：在一个事件处理中调用 `update`。服务端代码是被信任的，不受 `allow` 和 `deny` 限制。包含那些通过 `Meteor.call` 调用的 method &mdash;它们需要自己进行权限检查，而不是依赖 `allow` 和 `deny`。
 
-You can call `allow` as many times as you like, and each call can
-include any combination of `insert`, `update`, and `remove`
-functions. The functions should return `true` if they think the
-operation should be allowed. Otherwise they should return `false`, or
-nothing at all (`undefined`). In that case Meteor will continue
-searching through any other `allow` rules on the collection.
+你可以多次调用 `allow`，每次调用可以随意组合 `insert`，`update`，`remove` 函数。如果允许操作，则返回 `true`，否则返回 `false`，或是什么都不返回(`undefined`)。那样的话，Meteor 会继续查找 collection 其它的 `allow` 规则。
 
-The available callbacks are:
+可选的回调有：
 
 <dl class="callbacks">
 {{#dtdd "insert(userId, doc)"}}
@@ -428,13 +414,12 @@ The user `userId` wants to remove `doc` from the database. Return
 
 </dl>
 
-When calling `update` or `remove` Meteor will by default fetch the
-entire document `doc` from the database. If you have large documents
+当调用 `update` 或是 `remove` 的时候，Meteor 默认会从数据库中获取整个 document。 If you have large documents
 you may wish to fetch only the fields that are actually used by your
 functions. Accomplish this by setting `fetch` to an array of field
 names to retrieve.
 
-Example:
+例如：
 
 ```js
 // Create a collection where users can only modify documents that
@@ -474,12 +459,9 @@ Posts.deny({
   fetch: ['locked'] // no need to fetch 'owner'
 });
 ```
-
-If you never set up any `allow` rules on a collection then all client
-writes to the collection will be denied, and it will only be possible to
-write to the collection from server-side code. In this case you will
-have to create a method for each possible write that clients are allowed
-to do. You'll then call these methods with `Meteor.call` rather than
+如果一个 collection 没有任何 `allow` 规则，那么客户端所有的写操作都会被拒绝，
+只能通过服务端代码进行修改。在这种情况下，你需要给客户端每一个写操作创建一个 method。
+You'll then call these methods with `Meteor.call` rather than
 having the clients call `insert`, `update`, and `remove` directly on the
 collection.
 
